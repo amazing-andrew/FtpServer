@@ -28,7 +28,7 @@ namespace FtpServer.Tests
         [Fact]
         public void Listen_OpensThePort() {
             //listen is called in this ctor
-            AssertCustom.PortIsOpen(TestPort);
+            Assert.PortIsOpen(TestPort);
         }
 
         [Fact]
@@ -36,7 +36,7 @@ namespace FtpServer.Tests
             server.Listen();
             server.Close();
 
-            AssertCustom.PortIsNotOpen(TestPort); ;
+            Assert.PortIsNotOpen(TestPort); ;
         }
 
         [Fact]

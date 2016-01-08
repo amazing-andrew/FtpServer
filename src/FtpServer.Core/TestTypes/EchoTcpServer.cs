@@ -15,17 +15,17 @@ namespace FtpServer.Core.TestTypes
         }
 
         protected override async Task HandleClient(TcpClient client) {
-            var stream = client.GetStream();
-            var reader = new StreamReader(stream);
-            var writer = new StreamWriter(stream);
+            using (var stream = client.GetStream())
+            using (var reader = new StreamReader(stream))
+            using (var writer = new StreamWriter(stream)) {
 
-            string line = await reader.ReadLineAsync().ConfigureAwait(false);
-            
-            while(line != null) {
-                writer.WriteLine(line);
-                writer.Flush();
+                string line = await reader.ReadLineAsync().ConfigureAwait(false);
 
-                line = await reader.ReadLineAsync().ConfigureAwait(false);
+                while (line != null) {
+                    writer.WriteLine(line);
+                    writer.Flush();
+                    line = await reader.ReadLineAsync().ConfigureAwait(false);
+                }
             }
         }
     }

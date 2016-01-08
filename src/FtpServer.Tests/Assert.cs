@@ -8,7 +8,7 @@ using Xunit;
 
 namespace FtpServer.Tests
 {
-    public class AssertCustom
+    public class Assert : global::Xunit.Assert
     {
         public static void PortIsOpen(int port) {
             bool isPortOpen = check_IsPortOpen(port);
