@@ -47,6 +47,8 @@ namespace FtpServer.Core
 
             try {
                 await HandleClient(client);
+                client.Close();
+                client = null;
             }
             catch (Exception ex) {
                 log.Fatal("Start Handle Task Exception", ex);
@@ -70,7 +72,7 @@ namespace FtpServer.Core
         public void Listen() {
             lock(this) {
                 if (!IsAlreadyListening()) {
-                    listener.Start();
+                    listener.Start(100);
                     AcceptClientsAsync(listener);
                 }
             }

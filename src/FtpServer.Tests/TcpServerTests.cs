@@ -52,7 +52,7 @@ namespace FtpServer.Tests
 
         [Fact]
         public void WriteAndRead_Multiple_DataToAndFromServer() {
-            int number_of_clients_to_connect = 50;
+            int number_of_clients_to_connect = 10000;
 
             Parallel.For(0, number_of_clients_to_connect, i => {
                 Log.InfoFormat("Testing Client #{0}", i);
@@ -85,7 +85,6 @@ namespace FtpServer.Tests
 
             try {
                 server.Dispose();
-                Thread.Sleep(100);
             }
             catch(Exception ex) {
                 Log.Fatal("Dispose Exception", ex);
