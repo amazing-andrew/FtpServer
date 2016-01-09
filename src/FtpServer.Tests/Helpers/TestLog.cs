@@ -16,10 +16,16 @@ namespace FtpServer.Tests.Helpers
             this.output = output;
         }
 
+        private string GetExceptionString(Exception ex) {
+            return string.Format("{0} - {1}",
+                ex.GetType().Name, ex.Message);
+        }
+
         private void Write(string msg, params object[] args) {
             try {
                 string f = string.Format(msg, args);
                 output.WriteLine(f);
+                System.Diagnostics.Trace.WriteLine(f);
             }
             catch(InvalidOperationException) { }
         }
@@ -40,7 +46,7 @@ namespace FtpServer.Tests.Helpers
             Write("{0} : {1} \r\n {2}",
                 level,
                 msg,
-                ex.ToString());
+                GetExceptionString(ex));
         }
     }
 }

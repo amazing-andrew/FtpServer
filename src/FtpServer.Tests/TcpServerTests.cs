@@ -33,16 +33,14 @@ namespace FtpServer.Tests
 
         [Fact]
         public void Close_ClosesPort() {
-            server.Listen();
             server.Close();
-
             Assert.PortIsNotOpen(TestPort); ;
         }
 
         [Fact]
         public void Dispose_ClosesPort() {
             server.Dispose();
-            AssertCustom.PortIsNotOpen(TestPort);
+            Assert.PortIsNotOpen(TestPort);
         }
 
         [Fact]
@@ -88,7 +86,7 @@ namespace FtpServer.Tests
                 Thread.Sleep(100);
             }
             catch(Exception ex) {
-
+                Log.Fatal("Dispose Exception", ex);
             }
             
         }

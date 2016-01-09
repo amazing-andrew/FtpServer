@@ -42,6 +42,7 @@ namespace FtpServer.Core
                 }
                 catch (Exception ex) { //listener closed
                     log.Fatal("Accept Clients Async Exception", ex);
+                    break;
                 }
             }
         }
@@ -51,6 +52,7 @@ namespace FtpServer.Core
                 return;
 
             try {
+                log.Info("Handling Client");
                 await HandleClient(client);
             }
             catch (Exception ex) {
@@ -63,7 +65,9 @@ namespace FtpServer.Core
 
         public void Close() {
             try {
-                listener.Stop();
+                if (listener.Server.IsBound) {
+                    listener.Stop();
+                }
             }
             catch(Exception ex) {
                 log.Fatal("Close Exception", ex);
