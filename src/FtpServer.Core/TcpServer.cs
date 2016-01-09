@@ -16,6 +16,7 @@ namespace FtpServer.Core
         private TcpListener listener;
         private Log log;
 
+
         public TcpServer(int port, LogManager log) {
             this.port = port;
             this.log = log.GetLogFor(GetType());
@@ -24,35 +25,27 @@ namespace FtpServer.Core
                 IPAddress.Any,
                 this.port);
         }
-
-        public void Listen() {
-            if (!listener.Server.IsBound) {
-                listener.Start();
-                AcceptClientsAsync(listener);
-            }
-        }
-
+        
         private async void AcceptClientsAsync(TcpListener listener) {
             TcpClient client = null;
 
             while(true) {
                 try {
                     client = await listener.AcceptTcpClientAsync().ConfigureAwait(false);
-                    StartHandleTask(client);
                 }
-                catch (Exception ex) { //listener closed
-                    log.Fatal("Accept Clients Async Exception", ex);
-                    break;
-                }
+                catch (ObjectDisposedException)   { /*the listener has stopped */ break; }
+                catch (NullReferenceException)    { /*the listener has stopped */ break; }
+                catch (InvalidOperationException) { /*the listener has stopped */ break; }
+
+                DispatchClientToHandler(client);
             }
         }
 
-        private async void StartHandleTask(TcpClient client) {
+        private async void DispatchClientToHandler(TcpClient client) {
             if (client == null || client.Connected == false)
                 return;
 
             try {
-                log.Info("Handling Client");
                 await HandleClient(client);
             }
             catch (Exception ex) {
@@ -63,16 +56,37 @@ namespace FtpServer.Core
         protected abstract Task HandleClient(TcpClient client);
         
 
-        public void Close() {
-            try {
-                if (listener.Server.IsBound) {
-                    listener.Stop();
+        private bool IsAlreadyListening() {
+            var x1 = listener;
+            var x2 = listener.Server;
+
+            if (x1 == null || x2 == null)
+                return false;
+
+            else return x2.IsBound;
+        }
+
+
+        public void Listen() {
+            lock(this) {
+                if (!IsAlreadyListening()) {
+                    listener.Start();
+                    AcceptClientsAsync(listener);
                 }
             }
-            catch(Exception ex) {
-                log.Fatal("Close Exception", ex);
+        }
+
+        public void Close() {
+            lock(this) {
+                try {
+                    if (IsAlreadyListening()) {
+                        listener.Stop();
+                    }
+                }
+                catch (Exception ex) {
+                    log.Fatal("Close Exception", ex);
+                }
             }
-            
         }
 
         public void Dispose() {

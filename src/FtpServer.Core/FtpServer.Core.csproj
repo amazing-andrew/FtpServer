@@ -45,12 +45,12 @@
     <Compile Include="Commands\Noop.cs" />
     <Compile Include="FtpResponceCode.cs" />
     <Compile Include="FtpSession.cs" />
-    <Compile Include="Logging\ColoredConsoleLog.cs" />
     <Compile Include="Logging\Log.cs" />
     <Compile Include="Logging\LogManager.cs" />
     <Compile Include="Logging\SimpleLog.cs" />
     <Compile Include="Logging\SimpleLogEntry.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TcpServer2.cs" />
     <Compile Include="TcpServer.cs" />
     <Compile Include="TestTypes\EchoTcpServer.cs" />
     <Compile Include="TestTypes\FtpSessionSpy.cs" />

@@ -9,7 +9,7 @@ using FtpServer.Core.Logging;
 
 namespace FtpServer.Core.TestTypes
 {
-    public class EchoTcpServer : TcpServer
+    public class EchoTcpServer : TcpServer2
     {
         public EchoTcpServer(int port, LogManager logManager) : base(port, logManager) {
         }

@@ -37,7 +37,7 @@ namespace FtpServer.Tests.Helpers
             }
 
             //send to trace
-            System.Diagnostics.Trace.Write(sb.ToString());
+            System.Diagnostics.Trace.WriteLine(sb.ToString());
 
             //send to test output
             try { output.WriteLine(sb.ToString()); }

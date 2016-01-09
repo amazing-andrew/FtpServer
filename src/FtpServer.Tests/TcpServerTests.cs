@@ -18,7 +18,7 @@ namespace FtpServer.Tests
     public class TcpServerTests : TestBase, IDisposable
     {
         const int TestPort = 9999;
-        TcpServer server;
+        EchoTcpServer server;
         
         public TcpServerTests(ITestOutputHelper output) : base(output) {
             server = new EchoTcpServer(TestPort, TestLogManager);
@@ -52,14 +52,14 @@ namespace FtpServer.Tests
 
         [Fact]
         public void WriteAndRead_Multiple_DataToAndFromServer() {
-            int numOfClients = 100;
-            Parallel.For(0, numOfClients, i => {
-            //for (int i = 0; i < 100; i++) { 
+            int number_of_clients_to_connect = 50;
+
+            Parallel.For(0, number_of_clients_to_connect, i => {
                 Log.InfoFormat("Testing Client #{0}", i);
-                var client = make_ClientAndConnect();
-                TestServerReadAndWrite(client);
-            }
-            );
+                using (var client = make_ClientAndConnect()) {
+                    TestServerReadAndWrite(client);
+                }
+            });
         }
         
         private static void TestServerReadAndWrite(TcpClient client) {
