@@ -17,7 +17,6 @@ namespace FtpServer.Tests
         public TestBase(ITestOutputHelper output) {
             this.TestLogManager = new LogManager(name => new TestLog(name, output));
             this.Log = TestLogManager.GetLogFor(GetType());
-            
         }
         
     }

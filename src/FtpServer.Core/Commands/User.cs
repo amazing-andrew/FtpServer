@@ -6,12 +6,14 @@ using System.Threading.Tasks;
 
 namespace FtpServer.Core.Commands
 {
-    public class Noop : FtpCommand
+    public class User : FtpCommand
     {
-        private const string NoopOK = "200 OK";
+        public const string UserDataKey = "USER";
 
         public void Execute(FtpRequest request, FtpSession session) {
-            session.Send(NoopOK);
+            
+            //record user name input
+            session.SetData(UserDataKey, request.Arguments);
         }
     }
 }

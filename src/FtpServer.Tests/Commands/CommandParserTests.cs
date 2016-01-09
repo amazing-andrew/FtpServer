@@ -14,9 +14,18 @@ namespace FtpServer.Tests.Commands
 
         [Fact] 
         void Parse_Noop() {
-            string cmdString = "NOOP";
-            FtpCommand cmd = parser.Parse(cmdString);
+            string input = "NOOP";
+            FtpCommand cmd = parser.Parse(input);
+
             Assert.IsType<Noop>(cmd);
+        }
+
+        [Fact]
+        void Parse_User() {
+            string input = "USER";
+            FtpCommand cmd = parser.Parse(input);
+
+            Assert.IsType<User>(cmd);
         }
 
     }

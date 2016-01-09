@@ -12,6 +12,7 @@ namespace FtpServer.Core.Commands
 
         static CommandParser() {
             AddCommand("NOOP", typeof(Noop));
+            AddCommand("USER", typeof(User));
         }
 
         private static void AddCommand(string commandName, Type type) {

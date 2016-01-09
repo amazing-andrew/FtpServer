@@ -62,6 +62,8 @@
     <Compile Include="Assert.cs" />
     <Compile Include="Commands\CommandParserTests.cs" />
     <Compile Include="Commands\NoopTests.cs" />
+    <Compile Include="Commands\UserTests.cs" />
+    <Compile Include="FtpRequestTests.cs" />
     <Compile Include="FtpSessionTests.cs" />
     <Compile Include="Helpers\TestLog.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

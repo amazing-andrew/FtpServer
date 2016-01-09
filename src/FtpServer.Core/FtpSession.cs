@@ -8,6 +8,10 @@ namespace FtpServer.Core
 {
     public interface FtpSession
     {
+        void SetData(string key, string value);
+        string GetData(string key);
+
+
         void Send(string message);
     }
 }

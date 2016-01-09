@@ -11,17 +11,13 @@ namespace FtpServer.Tests.Commands
 {
     public class NoopTests
     {
-        FtpSessionSpy session = make_Session();
+        FtpSessionSpy session = new FtpSessionSpy();
 
-        private static FtpSessionSpy make_Session() {
-            FtpSessionSpy spy = new FtpSessionSpy();
-            return spy;
-        }
 
         [Fact]
         void TestNoop() {
             Noop noop = new Noop();
-            noop.Execute(session);
+            noop.Execute(null, session);
 
             Assert.StartsWith("200", session.MessageSent);
         }

@@ -8,6 +8,6 @@ namespace FtpServer.Core.Commands
 {
     public interface FtpCommand
     {
-        void Execute(FtpSession session);
+        void Execute(FtpRequest request, FtpSession session);
     }
 }
