@@ -60,6 +60,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assert.cs" />
+    <Compile Include="Authentication\AnonymousOnlyAuthenticationProviderTests.cs" />
+    <Compile Include="Authorization\AlwaysAllowAuthorizationProvider.cs" />
     <Compile Include="Commands\CommandParserTests.cs" />
     <Compile Include="Commands\NoopTests.cs" />
     <Compile Include="Commands\UserTests.cs" />
