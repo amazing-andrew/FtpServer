@@ -11,7 +11,7 @@ namespace FtpServer.Core.TestTypes
 {
     public class EchoTcpServer : TcpServer
     {
-        public EchoTcpServer(int port, Log log) : base(port, log) {
+        public EchoTcpServer(int port, LogManager logManager) : base(port, logManager) {
         }
 
         protected override async Task HandleClient(TcpClient client) {

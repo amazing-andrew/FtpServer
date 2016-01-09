@@ -16,9 +16,9 @@ namespace FtpServer.Core
         private TcpListener listener;
         private Log log;
 
-        public TcpServer(int port, Log log) {
+        public TcpServer(int port, LogManager log) {
             this.port = port;
-            this.log = log;
+            this.log = log.GetLogFor(GetType());
 
             listener = new TcpListener(
                 IPAddress.Any,

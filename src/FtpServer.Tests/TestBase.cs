@@ -10,13 +10,14 @@ using Xunit.Abstractions;
 
 namespace FtpServer.Tests
 {
-    public abstract class TestBase
-    {
+    public abstract class TestBase {
+        protected LogManager TestLogManager { get; private set; }
         protected Log Log { get; private set; }
 
         public TestBase(ITestOutputHelper output) {
+            this.TestLogManager = new LogManager(name => new TestLog(name, output));
+            this.Log = TestLogManager.GetLogFor(GetType());
             
-            this.Log = new TestLog(output);
         }
         
     }

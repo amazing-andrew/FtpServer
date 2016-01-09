@@ -12,41 +12,36 @@ namespace FtpServer.Tests.Helpers
     {
         private ITestOutputHelper output;
 
-        public TestLog(ITestOutputHelper output) {
+        public TestLog(string name, ITestOutputHelper output) : base(name) {
             this.output = output;
         }
 
         private string GetExceptionString(Exception ex) {
-            return string.Format("{0} - {1}",
-                ex.GetType().Name, ex.Message);
+            return string.Format(
+                "  {0} - {1}",
+                ex.GetType().Name, 
+                ex.Message);
         }
+        
+        protected override void LogCore(SimpleLogEntry entry) {
+            StringBuilder sb = new StringBuilder();
+            sb.Append(entry.LogName);
+            sb.Append(" : ");
+            sb.Append(entry.Level);
+            sb.Append(" : ");
+            sb.Append(entry.Message);
 
-        private void Write(string msg, params object[] args) {
-            try {
-                string f = string.Format(msg, args);
-                output.WriteLine(f);
-                System.Diagnostics.Trace.WriteLine(f);
+            if (entry.Exception != null) {
+                sb.AppendLine();
+                sb.Append(GetExceptionString(entry.Exception));
             }
-            catch(InvalidOperationException) { }
-        }
 
-        protected override void Log(string level, string msg) {
-            Write("{0} : {1}", 
-                level, 
-                msg);
-        }
+            //send to trace
+            System.Diagnostics.Trace.Write(sb.ToString());
 
-        protected override void Log(string level, string msg, params object[] args) {
-            Write("{0} : {1}", 
-                level,
-                string.Format(msg, args));
-        }
-
-        protected override void Log(string level, string msg, Exception ex) {
-            Write("{0} : {1} \r\n {2}",
-                level,
-                msg,
-                GetExceptionString(ex));
+            //send to test output
+            try { output.WriteLine(sb.ToString()); }
+            catch (InvalidOperationException) { }
         }
     }
 }

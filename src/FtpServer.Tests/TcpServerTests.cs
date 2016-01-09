@@ -21,7 +21,7 @@ namespace FtpServer.Tests
         TcpServer server;
         
         public TcpServerTests(ITestOutputHelper output) : base(output) {
-            server = new EchoTcpServer(TestPort, new TestLog(output));
+            server = new EchoTcpServer(TestPort, TestLogManager);
             server.Listen();
         }
 
@@ -81,6 +81,8 @@ namespace FtpServer.Tests
         }
 
         public void Dispose() {
+            Log.Debug("Disposing of test");
+
             try {
                 server.Dispose();
                 Thread.Sleep(100);

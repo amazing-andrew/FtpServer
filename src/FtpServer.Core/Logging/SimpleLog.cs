@@ -8,9 +8,24 @@ namespace FtpServer.Core.Logging
 {
     public abstract class SimpleLog : Log
     {
-        protected abstract void Log(string level, string msg);
-        protected abstract void Log(string level, string msg, Exception ex);
-        protected abstract void Log(string level, string msg, params object[] args);
+        public string LogName { get; private set; }
+
+        public SimpleLog(string logName) {
+            this.LogName = logName;
+        }
+
+        protected abstract void LogCore(SimpleLogEntry entry);
+
+        protected void Log(string level, string msg) {
+            LogCore(new SimpleLogEntry(LogName, level, msg, null));
+        }
+        protected void Log(string level, string msg, Exception ex) {
+            LogCore(new SimpleLogEntry(LogName, level, msg, ex));
+        }
+        protected void Log(string level, string msg, params object[] args) {
+            string formatted = string.Format(msg, args);
+            LogCore(new SimpleLogEntry(LogName, level, formatted, null));
+        }
 
         public void Debug(string msg) {
             Log("DEBUG", msg);
