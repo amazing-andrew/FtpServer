@@ -64,6 +64,7 @@
     <Compile Include="Authorization\AlwaysAllowAuthorizationProvider.cs" />
     <Compile Include="Commands\CommandParserTests.cs" />
     <Compile Include="Commands\NoopTests.cs" />
+    <Compile Include="Commands\PassTests.cs" />
     <Compile Include="Commands\UserTests.cs" />
     <Compile Include="FtpRequestTests.cs" />
     <Compile Include="FtpSessionTests.cs" />
@@ -71,6 +72,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TcpServerTests.cs" />
     <Compile Include="TestBase.cs" />
+    <Compile Include="TestDoubles\EchoTcpServer.cs" />
+    <Compile Include="TestDoubles\FtpSessionSpy.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FtpServer.Core\FtpServer.Core.csproj">

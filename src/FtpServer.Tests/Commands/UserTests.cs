@@ -1,6 +1,6 @@
 ﻿using FtpServer.Core;
 using FtpServer.Core.Commands;
-using FtpServer.Core.TestTypes;
+using FtpServer.Tests.TestDoubles;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,7 +27,6 @@ namespace FtpServer.Tests.Commands
 
         private FtpRequest make_UserRequest(string userName) {
             return new FtpRequest("USER", userName);
-            
         }
     }
 }

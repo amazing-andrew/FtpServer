@@ -6,8 +6,9 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 using FtpServer.Core.Logging;
+using FtpServer.Core;
 
-namespace FtpServer.Core.TestTypes
+namespace FtpServer.Tests.TestDoubles
 {
     public class EchoTcpServer : TcpServer2
     {

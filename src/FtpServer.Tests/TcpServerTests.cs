@@ -1,5 +1,4 @@
 ﻿using FtpServer.Core;
-using FtpServer.Core.TestTypes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +11,7 @@ using Xunit.Sdk;
 using Xunit.Abstractions;
 using System.Threading;
 using FtpServer.Tests.Helpers;
+using FtpServer.Tests.TestDoubles;
 
 namespace FtpServer.Tests
 {

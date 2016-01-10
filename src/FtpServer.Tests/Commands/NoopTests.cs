@@ -1,5 +1,5 @@
 ﻿using FtpServer.Core.Commands;
-using FtpServer.Core.TestTypes;
+using FtpServer.Tests.TestDoubles;
 using System;
 using System.Collections.Generic;
 using System.Linq;
