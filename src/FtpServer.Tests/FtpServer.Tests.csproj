@@ -63,11 +63,12 @@
     <Compile Include="Authentication\AnonymousOnlyAuthenticationProviderTests.cs" />
     <Compile Include="Authorization\AlwaysAllowAuthorizationProvider.cs" />
     <Compile Include="Commands\CommandParserTests.cs" />
+    <Compile Include="Commands\CommandTestBase.cs" />
     <Compile Include="Commands\NoopTests.cs" />
     <Compile Include="Commands\PassTests.cs" />
     <Compile Include="Commands\UserTests.cs" />
     <Compile Include="FtpRequestTests.cs" />
-    <Compile Include="FtpSessionTests.cs" />
+    <Compile Include="FtpSessionSpyTests.cs" />
     <Compile Include="Helpers\TestLog.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TcpServerTests.cs" />

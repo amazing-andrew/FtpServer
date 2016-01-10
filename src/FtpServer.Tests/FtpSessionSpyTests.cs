@@ -9,14 +9,20 @@ using Xunit;
 
 namespace FtpServer.Tests
 {
-    public class FtpSessionTests
+    public class FtpSessionSpyTests
     {
         FtpSessionSpy session = new FtpSessionSpy();
             
         [Fact]
-        public void Send_SendsMessage() {
+        public void Send_SetsServerResponce() {
             session.Send("Hello");
-            Assert.Equal("Hello", session.MessageSent);
+            Assert.Equal("Hello", session.ServerResponce);
+        }
+
+        public void Send_TwiceOverwritesResponce() {
+            session.Send("1");
+            session.Send("2");
+            Assert.Equal("2", session.ServerResponce);
         }
 
         [Fact]

@@ -12,7 +12,7 @@ namespace FtpServer.Tests.TestDoubles
         Dictionary<string, string> data = new Dictionary<string, string>();
 
         // spy properties
-        public string MessageSent { get; private set; }
+        public string ServerResponce { get; private set; }
         public bool AuthenticateWasCalled { get; private set; }
         public string AuthenticateUserName { get; private set; }
         public string AuthenticatePassword { get; private set; }
@@ -20,7 +20,7 @@ namespace FtpServer.Tests.TestDoubles
 
         
         public void Send(string message) {
-            this.MessageSent = message;
+            this.ServerResponce = message;
         }
 
         public string GetData(string key) {

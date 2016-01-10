@@ -14,6 +14,7 @@ namespace FtpServer.Core.Commands
             
             //record user name input
             session.SetData(UserDataKey, request.Arguments);
+            session.Send("331 Send Password Command");
         }
     }
 }

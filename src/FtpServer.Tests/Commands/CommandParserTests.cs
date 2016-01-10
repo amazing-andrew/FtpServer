@@ -12,21 +12,30 @@ namespace FtpServer.Tests.Commands
     {
         CommandParser parser = new CommandParser();
 
+        void Parse_Unknown_ReturnsNull() {
+            CommandParser parser = new CommandParser();
+            FtpCommand result = parser.Parse("ASDF");
+            Assert.Null(result);
+        }
+
         [Fact] 
         void Parse_Noop() {
-            string input = "NOOP";
-            FtpCommand cmd = parser.Parse(input);
-
-            Assert.IsType<Noop>(cmd);
+            Assert_CommandMatchesType<Noop>("NOOP");
         }
 
         [Fact]
         void Parse_User() {
-            string input = "USER";
-            FtpCommand cmd = parser.Parse(input);
-
-            Assert.IsType<User>(cmd);
+            Assert_CommandMatchesType<User>("USER");
         }
 
+        void Parse_Pass() {
+            Assert_CommandMatchesType<Pass>("PASS");
+        }
+
+
+        private void Assert_CommandMatchesType<T>(string inputCommandName) {
+            FtpCommand cmd = parser.Parse(inputCommandName);
+            Assert.IsType<T>(cmd);
+        }
     }
 }

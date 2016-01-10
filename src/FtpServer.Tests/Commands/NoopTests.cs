@@ -1,4 +1,5 @@
-﻿using FtpServer.Core.Commands;
+﻿using FtpServer.Core;
+using FtpServer.Core.Commands;
 using FtpServer.Tests.TestDoubles;
 using System;
 using System.Collections.Generic;
@@ -9,17 +10,12 @@ using Xunit;
 
 namespace FtpServer.Tests.Commands
 {
-    public class NoopTests
+    public class NoopTests : CommandTestBase
     {
-        FtpSessionSpy session = new FtpSessionSpy();
-
-
         [Fact]
-        void TestNoop() {
-            Noop noop = new Noop();
-            noop.Execute(null, session);
-
-            Assert.StartsWith("200", session.MessageSent);
+        void Noop_SendsOK() {
+            ExecuteFtpCommand<Noop>(null, null);
+            Assert_ServerResponceCode(FtpResponceCode.CommandOK);
         }
     }
 }
