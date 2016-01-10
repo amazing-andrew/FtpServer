@@ -1,5 +1,3 @@
-# FtpServer
-An Open Sourced Embedable Ftp Server built using C#
+#Ftp Server
 
-# Embedable Ftp Server
-This is currently a work in progress. I've written an FtpServer before that worked really well, but I thought I would update it to use Async/Await method and see how performat it turns out.
+This is an ftp server written in 100% pure C#. It is currently a work in progress. I would like the server to run on Mono as well. But I will worry about that until more of the system is implemented. 
