@@ -20,5 +20,10 @@ namespace FtpServer.Tests.Commands
             Assert.Equal("Steve", recorded_username);
         }
 
+        [Fact]
+        public void User_ServerExpectsPasswordNext() {
+            ExecuteFtpCommand<User>("USER", "Steve");
+            Assert_ServerResponceCode(FtpResponceCode.SendPasswordCommand);
+        }
     }
 }
