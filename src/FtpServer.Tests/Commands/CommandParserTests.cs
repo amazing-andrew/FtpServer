@@ -28,8 +28,14 @@ namespace FtpServer.Tests.Commands
             Assert_CommandMatchesType<User>("USER");
         }
 
+        [Fact]
         void Parse_Pass() {
             Assert_CommandMatchesType<Pass>("PASS");
+        }
+
+        [Fact]
+        void Parse_Quit() {
+            Assert_CommandMatchesType<Quit>("QUIT");
         }
 
 

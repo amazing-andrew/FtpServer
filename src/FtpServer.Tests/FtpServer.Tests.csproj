@@ -66,6 +66,7 @@
     <Compile Include="Commands\CommandTestBase.cs" />
     <Compile Include="Commands\NoopTests.cs" />
     <Compile Include="Commands\PassTests.cs" />
+    <Compile Include="Commands\QuitTests.cs" />
     <Compile Include="Commands\UserTests.cs" />
     <Compile Include="FtpRequestTests.cs" />
     <Compile Include="FtpSessionSpyTests.cs" />

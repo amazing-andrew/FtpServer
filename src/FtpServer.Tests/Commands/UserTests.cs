@@ -25,5 +25,14 @@ namespace FtpServer.Tests.Commands
             ExecuteFtpCommand<User>("USER", "Steve");
             Assert_ServerResponceCode(FtpResponceCode.SendPasswordCommand);
         }
+
+        [Fact]
+        public void User_WithoutUserName_HasArgumentError() {
+            ExecuteFtpCommand<User>("USER", null);
+            Assert_ServerResponceCode(FtpResponceCode.ArgumentSyntaxError);
+
+            ExecuteFtpCommand<User>("USER", "");
+            Assert_ServerResponceCode(FtpResponceCode.ArgumentSyntaxError);
+        }
     }
 }

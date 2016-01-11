@@ -48,6 +48,7 @@
     <Compile Include="Commands\FtpCommand.cs" />
     <Compile Include="Commands\Noop.cs" />
     <Compile Include="Commands\Pass.cs" />
+    <Compile Include="Commands\Quit.cs" />
     <Compile Include="Commands\User.cs" />
     <Compile Include="FtpRequest.cs" />
     <Compile Include="FtpResponceCode.cs" />

@@ -15,5 +15,6 @@ namespace FtpServer.Core
         void Send(string message);
         
         void Authenticate(string inputUser, string inputPass);
+        void Quit();
     }
 }

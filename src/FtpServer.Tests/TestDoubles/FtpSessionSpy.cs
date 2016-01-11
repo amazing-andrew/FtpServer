@@ -16,6 +16,7 @@ namespace FtpServer.Tests.TestDoubles
         public bool AuthenticateWasCalled { get; private set; }
         public string AuthenticateUserName { get; private set; }
         public string AuthenticatePassword { get; private set; }
+        public bool QuitWasCalled { get; private set; }
 
 
         
@@ -40,6 +41,10 @@ namespace FtpServer.Tests.TestDoubles
             this.AuthenticateWasCalled = true;
             this.AuthenticateUserName = inputUser;
             this.AuthenticatePassword = inputPass;
+        }
+
+        public void Quit() {
+            QuitWasCalled = true;
         }
     }
 }
