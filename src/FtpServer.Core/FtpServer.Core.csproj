@@ -53,6 +53,8 @@
     <Compile Include="FtpRequest.cs" />
     <Compile Include="FtpResponceCode.cs" />
     <Compile Include="FtpSession.cs" />
+    <Compile Include="IO\FsFile.cs" />
+    <Compile Include="IO\SystemFsFile.cs" />
     <Compile Include="Logging\Log.cs" />
     <Compile Include="Logging\LogManager.cs" />
     <Compile Include="Logging\SimpleLog.cs" />

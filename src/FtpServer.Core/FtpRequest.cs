@@ -15,7 +15,5 @@ namespace FtpServer.Core
             this.Command = command;
             this.Arguments = arguments;
         }
-
-        
     }
 }
